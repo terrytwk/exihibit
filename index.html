@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terry (Tae Wook) Kim · PD Soros Visual Exhibit</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Fraunces (Editorial Serif), Plus Jakarta Sans (Clean UI), Caveat (Handwritten Polaroid Ink) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: '#F6F2EA',
+            paperDark: '#EAE3D5',
+            espresso: '#231915',
+            sienna: '#B85D3B',
+            ochre: '#D49A58',
+            sage: '#3E5641',
+          },
+          fontFamily: {
+            serif: ['Fraunces', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            hand: ['Caveat', 'cursive'],
+          },
+          boxShadow: {
+            'polaroid': '0 10px 25px -4px rgba(35, 25, 21, 0.12), 0 4px 10px -2px rgba(35, 25, 21, 0.06)',
+            'polaroid-hover': '0 26px 50px -8px rgba(35, 25, 21, 0.24), 0 10px 20px -4px rgba(35, 25, 21, 0.12)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Tactile analog gallery paper background */
+    body {
+      background-color: #F6F2EA;
+      color: #231915;
+      background-image: 
+        radial-gradient(rgba(35, 25, 21, 0.045) 1px, transparent 0),
+        radial-gradient(rgba(184, 93, 59, 0.03) 1px, transparent 0);
+      background-size: 28px 28px;
+      background-position: 0 0, 14px 14px;
+      font-size: 17px;
+      line-height: 1.55;
+    }
+
+    a,
+    button {
+      min-height: 42px;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid rgba(184, 93, 59, 0.55);
+      outline-offset: 3px;
+    }
+
+    header .h-14 {
+      min-height: 64px;
+      height: auto;
+      padding-top: 0.55rem;
+      padding-bottom: 0.55rem;
+    }
+
+    main {
+      font-size: 1rem;
+    }
+
+    /* Polaroid Frame & Smooth Hover Lift (No Dragging) */
+    .polaroid {
+      background: #FFFFFF;
+      padding: 16px 16px 24px 16px;
+      border-radius: 4px;
+      box-shadow: 0 10px 25px -4px rgba(35, 25, 21, 0.12), 0 4px 10px -2px rgba(35, 25, 21, 0.06);
+      border: 1px solid rgba(35, 25, 21, 0.07);
+      position: relative;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1), z-index 0s;
+      will-change: transform;
+    }
+
+    .polaroid h3 {
+      font-size: clamp(1.75rem, 2.6vw, 2.15rem) !important;
+      line-height: 1.03 !important;
+    }
+
+    .polaroid p {
+      color: rgba(35, 25, 21, 0.82) !important;
+      font-size: 1.05rem !important;
+      line-height: 1.45 !important;
+      margin-top: 0.38rem !important;
+    }
+
+    .polaroid a {
+      padding: 0.5rem 0.78rem !important;
+      color: #8f432a !important;
+      font-size: 0.95rem !important;
+      line-height: 1.2 !important;
+      border: 1px solid rgba(184, 93, 59, 0.22);
+    }
+
+    .polaroid a:hover,
+    .polaroid a:focus-visible {
+      color: #FFFFFF !important;
+    }
+
+    .polaroid .absolute {
+      font-size: 0.78rem !important;
+      line-height: 1.2 !important;
+    }
+
+    section > div:first-child span:last-child,
+    header span,
+    main > div:first-child p {
+      color: rgba(35, 25, 21, 0.74) !important;
+      font-size: 0.94rem !important;
+      line-height: 1.35 !important;
+    }
+
+    header .font-serif {
+      color: #231915 !important;
+      font-size: clamp(1.05rem, 1.6vw, 1.2rem) !important;
+    }
+
+    section h2 {
+      font-size: clamp(2rem, 3.3vw, 2.55rem) !important;
+      line-height: 1.12 !important;
+    }
+
+    main > div:first-child h1 {
+      line-height: 1.08 !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+      }
+      .polaroid:hover {
+        transform: none !important;
+      }
+    }
+
+    /* Preset organic tilts */
+    .tilt-left-sm { transform: rotate(-1.5deg); }
+    .tilt-right-sm { transform: rotate(1.5deg); }
+    .tilt-left-md { transform: rotate(-2.4deg); }
+    .tilt-right-md { transform: rotate(2.2deg); }
+
+    /* Hovering straightens, lifts, and brings Polaroid to the front */
+    .polaroid:hover {
+      transform: translateY(-10px) scale(1.03) rotate(0deg) !important;
+      box-shadow: 0 26px 50px -8px rgba(35, 25, 21, 0.24), 0 10px 20px -4px rgba(35, 25, 21, 0.12);
+      z-index: 30;
+    }
+
+    /* Subtle Washi Tape Accent */
+    .tape {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      width: 78px;
+      height: 22px;
+      background-color: rgba(212, 154, 88, 0.28);
+      border-left: 1.5px dashed rgba(35, 25, 21, 0.12);
+      border-right: 1.5px dashed rgba(35, 25, 21, 0.12);
+      z-index: 10;
+      pointer-events: none;
+    }
+    .tape-sage {
+      background-color: rgba(62, 86, 65, 0.22);
+      transform: translateX(-50%) rotate(2deg);
+    }
+
+    /* Instagram embeds ship with their own minimum sizing. Keep the reel
+       readable by giving it a vertical stage and preventing horizontal crop. */
+    #ig-live-wrapper {
+      aspect-ratio: 9 / 16;
+      max-height: 680px;
+    }
+    #ig-live-wrapper .instagram-media,
+    #ig-live-wrapper iframe {
+      min-width: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    #ig-live-wrapper iframe {
+      height: 100% !important;
+    }
+
+    .word-flip {
+      display: inline-grid;
+      place-items: center;
+      min-width: 7.4ch;
+      padding: 0.08rem 0.82rem 0.2rem;
+      background: #fffaf1;
+      border: 1px solid rgba(184, 93, 59, 0.28);
+      border-bottom: 3px solid #B85D3B;
+      border-radius: 0.55rem;
+      box-shadow: 0 8px 18px rgba(35, 25, 21, 0.08);
+      transform-origin: 50% 100%;
+      font-size: clamp(2.7rem, 5.8vw, 4.35rem) !important;
+      line-height: 0.95 !important;
+    }
+    .word-flip #new-blank-word {
+      color: #B85D3B !important;
+      font-size: inherit !important;
+      line-height: inherit !important;
+    }
+    .word-flip.is-flipping {
+      animation: pageFlip 420ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @keyframes pageFlip {
+      0% { transform: rotateX(0deg) translateY(0); }
+      45% { transform: rotateX(72deg) translateY(-3px); }
+      100% { transform: rotateX(0deg) translateY(0); }
+    }
+
+    @media (min-width: 1024px) {
+      #section-1 {
+        width: min(1180px, calc(100vw - 4rem));
+        margin-left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Print stylesheet */
+    @media print {
+      @page {
+        margin: 10mm;
+      }
+      body {
+        background: #FFFFFF !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      #ig-live-wrapper {
+        display: none !important;
+      }
+      #ig-photo-fallback {
+        display: block !important;
+      }
+      .polaroid {
+        transform: none !important;
+        box-shadow: none !important;
+        border: 1px solid #D5CEC2 !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      section {
+        break-inside: avoid-page;
+        margin-bottom: 28px !important;
+      }
+    }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-sienna selection:text-white">
+
+  <!-- Minimalist Top Bar -->
+  <header class="sticky top-0 z-40 bg-paper/85 backdrop-blur-md border-b border-espresso/10 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="font-serif font-semibold text-base sm:text-lg text-espresso tracking-tight">Terry (Tae Wook) Kim</span>
+        <span class="text-espresso/30">·</span>
+        <span class="text-xs text-espresso/65 font-medium hidden sm:inline">Paul &amp; Daisy Soros Fellowship · Visual Exhibit</span>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-8 pt-10 pb-24 space-y-24">
+
+    <!-- Minimalist Title Header -->
+    <div class="text-center max-w-xl mx-auto pt-2">
+      <p class="text-xs font-mono uppercase tracking-widest text-sienna font-semibold mb-2">
+        Paul &amp; Daisy Soros Fellowship · Visual Exhibit
+      </p>
+      <h1 class="font-serif text-3xl sm:text-5xl font-semibold text-espresso tracking-tight">
+        Terry (Tae Wook) Kim
+      </h1>
+    </div>
+
+    <!-- ===================================================================
+         01 / BARISTA TO RESEARCHER (4 Polaroids)
+    ==================================================================== -->
+    <section id="section-1">
+      <div class="flex items-baseline justify-between border-b border-espresso/15 pb-3 mb-10">
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso">
+          <span class="font-mono text-sm text-sienna mr-2">01 /</span>Barista to Researcher
+        </h2>
+        <span class="text-xs text-espresso/60 hidden sm:inline">From the espresso bar to MIT coffee science</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-[minmax(340px,0.78fr)_minmax(0,1.22fr)] gap-8 lg:gap-8 items-start">
+
+        <!-- Polaroid 1: Latte Art Progression (Instagram Reel) -->
+        <div class="polaroid tilt-left-sm max-w-md mx-auto w-full">
+          <div class="tape"></div>
+          
+          <!-- Live Instagram Reel Inside Polaroid Vertical Stage -->
+          <div id="ig-live-wrapper" class="w-full overflow-hidden rounded-[2px] bg-paper/40 border border-espresso/5">
+            <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/C_OhRgWRRxl/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:2px; box-shadow:none; margin:0 auto; max-width:100%; min-width:0; padding:0; width:100%;">
+              <div style="padding:12px;">
+                <a href="https://www.instagram.com/reel/C_OhRgWRRxl/?utm_source=ig_embed&amp;utm_campaign=loading" style="background:#FFFFFF; line-height:0; padding:0; text-align:center; text-decoration:none; width:100%;" target="_blank" rel="noopener noreferrer">
+                  <div style="padding: 18% 0;"></div>
+                  <div style="color:#B85D3B; font-family:sans-serif; font-size:13px; font-weight:600; line-height:18px;">Watch Latte Art Reel (@terrydrinkscoffee)</div>
+                  <div style="padding: 18% 0;"></div>
+                </a>
+              </div>
+            </blockquote>
+          </div>
+
+          <!-- Clean Photo Fallback (Used if IG blocked, toggled, or printed) -->
+          <div id="ig-photo-fallback" class="hidden editable-photo aspect-square w-full overflow-hidden rounded-[2px] bg-paperDark relative" data-img-key="p1-craft">
+            <img id="img-p1-craft" src="assets/coffee-at-mit/mit-news.png" alt="Fallback image for the latte art reel" class="w-full h-full object-contain bg-white" />
+            <span class="absolute top-2.5 left-2.5 bg-espresso/80 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full pointer-events-none">
+              @terrydrinkscoffee
+            </span>
+          </div>
+
+          <!-- Polaroid Chin -->
+          <div class="pt-3.5 px-1">
+            <div class="flex items-center justify-between gap-1">
+              <h3 class="font-hand text-2xl font-bold text-espresso leading-tight">Latte Art Progression</h3>
+              <button onclick="toggleReelFallback()" class="no-print text-[10px] text-espresso/50 hover:text-sienna" title="Switch Reel / Photo view">
+                <i data-lucide="image" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+            <p class="text-xs text-espresso/70 mt-0.5">My coffee art piece: practice, craft, and sensory attention in motion.</p>
+            <div class="mt-2.5">
+              <a href="https://www.instagram.com/p/C_OhRgWRRxl/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-paper text-[11px] font-semibold text-sienna hover:bg-sienna hover:text-white transition">
+                <span>@terrydrinkscoffee Art Reel</span>
+                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-2 gap-8 lg:gap-6 content-start">
+
+        <!-- Polaroid 2: The Leap -->
+        <div class="polaroid tilt-right-sm">
+          <div class="tape tape-sage"></div>
+          <div class="editable-photo aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-paperDark relative" data-img-key="p1-leap">
+            <img id="img-p1-leap" src="assets/barista-to-researcher/linkedin.png" alt="The Leap LinkedIn story" class="w-full h-full object-contain bg-white" />
+            <span class="absolute bottom-2.5 left-2.5 bg-espresso/85 backdrop-blur-sm text-ochre text-[10px] font-bold px-2.5 py-1 rounded-full pointer-events-none">
+              250k+ Views · 1,700+ Likes
+            </span>
+          </div>
+          <div class="pt-3.5 px-1">
+            <h3 class="font-hand text-2xl font-bold text-espresso leading-tight">The Leap</h3>
+            <p class="text-xs text-espresso/70 mt-0.5">A public story about choosing craft, humility, and an unexpected path.</p>
+            <div class="mt-2.5">
+              <a href="https://lnkd.in/p/eXuSaUWU" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-paper text-[11px] font-semibold text-sienna hover:bg-sienna hover:text-white transition">
+                <span>LinkedIn Story</span>
+                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Polaroid 3: Latte Lab at MIT -->
+        <div class="polaroid tilt-left-md">
+          <div class="tape"></div>
+          <div class="editable-photo aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-paperDark relative" data-img-key="p1-lattelab">
+            <img id="img-p1-lattelab" src="assets/barista-to-researcher/lattelab.jpeg" alt="Latte Lab at MIT" class="w-full h-full object-cover" />
+            <span class="absolute bottom-2.5 left-2.5 bg-sage/90 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full pointer-events-none">
+              500+ Members · 1k+ Followers
+            </span>
+          </div>
+          <div class="pt-3.5 px-1">
+            <h3 class="font-hand text-2xl font-bold text-espresso leading-tight">Latte Lab at MIT</h3>
+            <p class="text-xs text-espresso/70 mt-0.5">Student coffee community &amp; sensory sandbox.</p>
+            <div class="mt-2.5 flex flex-wrap gap-1.5">
+              <a href="https://lattelab.org/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-paper text-[11px] font-semibold text-sienna hover:bg-sienna hover:text-white transition">
+                <span>Website</span>
+                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              </a>
+              <a href="https://instagram.com/mitlattelab" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-paper text-[11px] font-semibold text-espresso/80 hover:bg-espresso hover:text-white transition">
+                <span>Instagram</span>
+                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Polaroid 4: PKG Fellowship -->
+        <div class="polaroid tilt-right-md">
+          <div class="tape tape-sage"></div>
+          <div class="editable-photo aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-paperDark relative" data-img-key="p1-pkg">
+            <img id="img-p1-pkg" src="assets/barista-to-researcher/pkg-fellowship.jpg" alt="PKG Fellowship" class="w-full h-full object-cover" />
+            <span class="absolute bottom-2.5 left-2.5 bg-espresso/85 text-white text-[10px] font-bold px-2.5 py-1 rounded-full pointer-events-none">
+              MIT PKG Fellow
+            </span>
+          </div>
+          <div class="pt-3.5 px-1">
+            <h3 class="font-hand text-2xl font-bold text-espresso leading-tight">PKG Fellowship</h3>
+            <p class="text-xs text-espresso/70 mt-0.5">Fellowship for coffee science research.</p>
+            <div class="mt-2.5">
+              <a href="https://www.instagram.com/p/C9iOcrLy1Xn/?utm_source=ig_web_copy_link&cplk=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-paper text-[11px] font-semibold text-sienna hover:bg-sienna hover:text-white transition">
+                <span>PKG Highlight</span>
+                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Polaroid 5: Eloranta Fellowship -->
+        <div class="polaroid tilt-left-sm">
+          <div class="tape"></div>
+          <div class="editable-photo aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-paperDark relative" data-img-key="p1-eloranta">
+            <img id="img-p1-eloranta" src="assets/barista-to-researcher/Eloranta.png" alt="Eloranta Fellowship for coffee science research" class="w-full h-full object-contain bg-white" />
+            <span class="absolute bottom-2.5 left-2.5 bg-sage/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-full pointer-events-none">
+              Coffee Science Research
+            </span>
+          </div>
+          <div class="pt-3.5 px-1">
+            <h3 class="font-hand text-2xl font-bold text-espresso leading-tight">Eloranta Fellowship</h3>
+            <p class="text-xs text-espresso/70 mt-0.5">Fellowship for coffee science research.</p>
+            <div class="mt-2.5">
+              <a href="https://www.instagram.com/reel/DQwZH-miapk/?utm_source=ig_web_copy_link&amp;vrfl=MzRlODBiNWFlZA==&amp;srtk=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-paper text-[11px] font-semibold text-sienna hover:bg-sienna hover:text-white transition">
+                <span>Eloranta Highlight</span>
+                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         02 / COFFEE AT MIT (3 Polaroids)
+    ==================================================================== -->
+    <section id="section-2">
+      <div class="flex items-baseline justify-between border-b border-espresso/15 pb-3 mb-10">
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso">
+          <span class="font-mono text-sm text-sienna mr-2">02 /</span>Coffee at MIT
+        </h2>
+        <span class="text-xs text-espresso/60 hidden sm:inline">Press &amp; media coverage</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+
+        <!-- Polaroid 1: MIT News Feature -->
+        <div class="polaroid tilt-left-sm">
+          <div class="tape"></div>
+          <div class="editable-photo aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-paperDark relative" data-img-key="p2-mitnews">
+            <img id="img-p2-mitnews" src="assets/coffee-at-mit/mit-news.png" alt="MIT News Feature" class="w-full h-full object-contain bg-white" />
+            <span class="absolute top-2.5 left-2.5 bg-[#A31F34] text-white text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-sm shadow pointer-events-none">
+              MIT NEWS
+            </span>
+          </div>
+          <div class="pt-3.5 px-1">
+            <h3 class="font-hand text-2xl font-bold text-espresso leading-tight">MIT News Feature</h3>
+            <p class="text-xs text-espresso/70 mt-0.5">Decoding the science behind the perfect cup.</p>
+            <div class="mt-2.5">
+              <a href="https://news.mit.edu/2025/coffee-fix-mit-students-decode-science-behind-perfect-cup-0107" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-paper text-[11px] font-semibold text-sienna hover:bg-sienna hover:text-white transition">
+                <span>Read MIT News</span>
+                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Polaroid 2: NBC10 Boston Broadcast -->
+        <div class="polaroid tilt-right-sm">
+          <div class="tape tape-sage"></div>
+          <div class="editable-photo aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-espresso relative group" data-img-key="p2-nbc">
+            <img id="img-p2-nbc" src="assets/coffee-at-mit/nbc10-bos.png" onerror="this.src='assets/coffee-at-mit/mit-news.png'" alt="NBC10 Boston Broadcast" class="w-full h-full object-contain bg-white opacity-95" />
+            <span class="absolute top-2.5 left-2.5 bg-[#005596] text-white text-[10px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-sm shadow pointer-events-none">
+              NBC10 BOSTON
+            </span>
+            <button onclick="openVideoModal()" class="no-print absolute inset-0 flex items-center justify-center bg-black/25 hover:bg-black/40 transition" aria-label="Play NBC10 Video">
+              <span class="w-11 h-11 rounded-full bg-white/95 text-espresso flex items-center justify-center shadow-lg">
+                <i data-lucide="play" class="w-5 h-5 fill-current ml-0.5"></i>
+              </span>
+            </button>
+          </div>
+          <div class="pt-3.5 px-1">
+            <h3 class="font-hand text-2xl font-bold text-espresso leading-tight">NBC10 Boston Broadcast</h3>
+            <p class="text-xs text-espresso/70 mt-0.5">Live television feature on Course 3.000.</p>
+            <div class="mt-2.5">
+              <a href="https://www.youtube.com/watch?v=kO4-jYONaVU" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-paper text-[11px] font-semibold text-sienna hover:bg-sienna hover:text-white transition">
+                <span>Watch on YouTube</span>
+                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Polaroid 3: The Boston Globe -->
+        <div class="polaroid tilt-left-md">
+          <div class="tape"></div>
+          <div class="editable-photo aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-paperDark relative" data-img-key="p2-globe">
+            <img id="img-p2-globe" src="assets/coffee-at-mit/boston-globe.png" alt="The Boston Globe" class="w-full h-full object-contain bg-white" />
+            <span class="absolute top-2.5 left-2.5 bg-espresso text-paper text-[10px] font-serif font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-sm shadow pointer-events-none">
+              THE BOSTON GLOBE
+            </span>
+          </div>
+          <div class="pt-3.5 px-1">
+            <h3 class="font-hand text-2xl font-bold text-espresso leading-tight">The Boston Globe</h3>
+            <p class="text-xs text-espresso/70 mt-0.5">Lessons learned sipping espresso in MIT's coffee class.</p>
+            <div class="mt-2.5">
+              <a href="https://www.boston.com/news/the-boston-globe/2025/02/10/microwaving-your-coffee-changes-it-and-other-lessons-learned-while-sipping-espresso-in-mits-coffee-class/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-paper text-[11px] font-semibold text-sienna hover:bg-sienna hover:text-white transition">
+                <span>Read Boston Globe</span>
+                <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         03 / NEW [BLANK] (6 Polaroids in 3x2 Grid, Hover Lift)
+    ==================================================================== -->
+    <section id="section-3">
+      <div class="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-espresso/15 pb-3 mb-10 gap-2">
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso flex items-baseline gap-2">
+          <span class="font-mono text-sm text-sienna">03 /</span>
+          <span>New</span>
+          <button onclick="cycleBlankWord()" onmouseenter="cycleBlankWord()" class="word-flip text-sienna font-hand cursor-pointer transition-all" title="Click or hover to cycle">
+            <span id="new-blank-word">Runner</span>
+          </button>
+        </h2>
+        <span class="text-xs text-espresso/65">Continuously choosing to be a beginner.</span>
+      </div>
+
+      <!-- 3x2 Overlapping/Tilted Polaroid Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+
+        <!-- 1. New Runner -->
+        <div class="polaroid tilt-left-md hobby-card" data-new-word="Runner">
+          <div class="tape"></div>
+          <div class="editable-photo aspect-square w-full overflow-hidden rounded-[2px] bg-paperDark relative" data-img-key="p3-marathon">
+            <img id="img-p3-marathon" src="assets/hobbies/marathon.jpg" alt="Marathon Top 6%" class="w-full h-full object-cover" />
+          </div>
+          <div class="pt-3.5 px-1">
+            <h3 class="font-hand text-2xl font-bold text-espresso leading-tight">New Runner</h3>
+            <p class="text-xs text-espresso/70 mt-0.5">3:24 marathon finish · top 6%.</p>
+          </div>
+        </div>
+
+        <!-- 2. New Diver -->
+        <div class="polaroid tilt-right-sm hobby-card" data-new-word="Diver">
+          <div class="tape tape-sage"></div>
+          <div class="editable-photo aspect-square w-full overflow-hidden rounded-[2px] bg-paperDark relative" data-img-key="p3-scuba">
+            <img id="img-p3-scuba" src="assets/hobbies/scuba.jpeg" alt="New Diver" class="w-full h-full object-cover" />
+          </div>
+          <div class="pt-3.5 px-1">
+            <h3 class="font-hand text-2xl font-bold text-espresso leading-tight">New Diver</h3>
+            <p class="text-xs text-espresso/70 mt-0.5">Scuba certification and underwater calm.</p>
+          </div>
+        </div>
+
+        <!-- 3. New Sailor -->
+        <div class="polaroid tilt-left-sm hobby-card" data-new-word="Sailor">
+          <div class="tape"></div>
+          <div class="editable-photo aspect-square w-full overflow-hidden rounded-[2px] bg-paperDark relative" data-img-key="p3-sailing">
+            <img id="img-p3-sailing" src="assets/hobbies/sailing.jpeg" alt="New Sailor" class="w-full h-full object-cover" />
+          </div>
+          <div class="pt-3.5 px-1">
+            <h3 class="font-hand text-2xl font-bold text-espresso leading-tight">New Sailor</h3>
+            <p class="text-xs text-espresso/70 mt-0.5">Sailing certification on the Charles.</p>
+          </div>
+        </div>
+
+        <!-- 4. New Pirate -->
+        <div class="polaroid tilt-right-md hobby-card" data-new-word="Pirate">
+          <div class="tape tape-sage"></div>
+          <div class="editable-photo aspect-square w-full overflow-hidden rounded-[2px] bg-paperDark relative" data-img-key="p3-pirate">
+            <img id="img-p3-pirate" src="assets/hobbies/fencing.jpeg" alt="New Pirate" class="w-full h-full object-cover" />
+          </div>
+          <div class="pt-3.5 px-1">
+            <h3 class="font-hand text-2xl font-bold text-espresso leading-tight">New Pirate</h3>
+            <p class="text-xs text-espresso/70 mt-0.5">Earned MIT's pirate certificate by completing archery, fencing, pistol, and sailing.</p>
+          </div>
+        </div>
+
+        <!-- 5. New Pilot -->
+        <div class="polaroid tilt-left-sm hobby-card" data-new-word="Pilot">
+          <div class="tape"></div>
+          <div class="editable-photo aspect-square w-full overflow-hidden rounded-[2px] bg-paperDark relative" data-img-key="p3-pilot">
+            <img id="img-p3-pilot" src="assets/hobbies/pilot.jpg" alt="New Pilot" class="w-full h-full object-cover" />
+          </div>
+          <div class="pt-3.5 px-1">
+            <h3 class="font-hand text-2xl font-bold text-espresso leading-tight">New Pilot</h3>
+            <p class="text-xs text-espresso/70 mt-0.5">Student pilot license; learning systems and attention from the cockpit.</p>
+          </div>
+        </div>
+
+        <!-- 6. New Teacher -->
+        <div class="polaroid tilt-right-sm hobby-card" data-new-word="Teacher">
+          <div class="tape tape-sage"></div>
+          <div class="editable-photo aspect-square w-full overflow-hidden rounded-[2px] bg-paperDark relative" data-img-key="p3-teaching">
+            <img id="img-p3-teaching" src="assets/hobbies/teaching-1.JPG" alt="New Teacher" class="w-full h-full object-cover" />
+          </div>
+          <div class="pt-3.5 px-1">
+            <h3 class="font-hand text-2xl font-bold text-espresso leading-tight">New Teacher</h3>
+            <p class="text-xs text-espresso/70 mt-0.5">Teaching certification through MIT Teaching + Learning Lab.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         04 / SNEAK PEEK OF MY RESEARCH (2 Side-by-Side Polaroids)
+    ==================================================================== -->
+    <section id="section-4">
+      <div class="flex items-baseline justify-between border-b border-espresso/15 pb-3 mb-10">
+        <h2 class="font-serif text-2xl sm:text-3xl font-semibold text-espresso">
+          <span class="font-mono text-sm text-sienna mr-2">04 /</span>Sneak Peek of My Research
+        </h2>
+        <span class="text-xs text-espresso/60 hidden sm:inline">Chemosensory AI &amp; autonomous research</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+
+        <!-- Polaroid 1: FlavorBERT -->
+        <div class="polaroid tilt-left-sm">
+          <div class="tape"></div>
+          <div class="editable-photo aspect-[16/11] w-full overflow-hidden rounded-[2px] bg-[#FAF6EE] border border-espresso/10 relative flex items-center justify-center" data-img-key="p4-flavorbert">
+            <img id="img-p4-flavorbert" src="assets/sneak-peek-research/FlavorBERT.PNG" alt="FlavorBERT" class="w-full h-full object-contain bg-white" />
+            <!-- Minimalist Visual Diagram inside Polaroid -->
+            <div id="diagram-p4-flavorbert" class="hidden p-6 w-full text-center">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sienna/10 text-sienna text-[11px] font-mono font-semibold mb-4">
+                <span>LC-MS Spectrum</span>
+                <span>→</span>
+                <span>Transformer</span>
+                <span>→</span>
+                <span>Flavor Profile</span>
+              </div>
+              <div class="grid grid-cols-3 gap-3 items-center max-w-xs mx-auto">
+                <div class="bg-white p-3 rounded-lg border border-espresso/10 shadow-sm">
+                  <i data-lucide="flask-conical" class="w-5 h-5 mx-auto text-sienna mb-1"></i>
+                  <span class="block text-[11px] font-bold text-espresso">Molecules</span>
+                </div>
+                <div class="bg-espresso text-paper p-3 rounded-lg shadow">
+                  <i data-lucide="sparkles" class="w-5 h-5 mx-auto text-ochre mb-1"></i>
+                  <span class="block text-[11px] font-bold text-ochre">FlavorBERT</span>
+                </div>
+                <div class="bg-white p-3 rounded-lg border border-espresso/10 shadow-sm">
+                  <i data-lucide="coffee" class="w-5 h-5 mx-auto text-sage mb-1"></i>
+                  <span class="block text-[11px] font-bold text-espresso">Taste Notes</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 px-1 flex flex-col items-start gap-3">
+            <div>
+              <h3 class="font-hand text-3xl font-bold text-espresso leading-tight">FlavorBERT</h3>
+              <p class="text-xs text-espresso/70 mt-0.5">A ChatGPT-like model for flavor: predicting taste from molecular data.</p>
+            </div>
+            <a href="https://drive.google.com/file/d/1WQncIrb3IlAbNRlG0_7IhG1YFpSBaYZi/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-paper text-sienna text-xs font-semibold hover:bg-sienna hover:text-white transition">
+              <span>View Research Poster</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Polaroid 2: Autonomous Agents for Research -->
+        <div class="polaroid tilt-right-sm">
+          <div class="tape tape-sage"></div>
+          <div class="editable-photo aspect-[16/11] w-full overflow-hidden rounded-[2px] bg-[#EFF4F0] border border-espresso/10 relative flex items-center justify-center" data-img-key="p4-agent">
+            <img id="img-p4-agent" src="assets/sneak-peek-research/agent-paper.png" alt="Autonomous Agents for Research" class="w-full h-full object-contain bg-white" />
+            <!-- Minimalist Visual Diagram inside Polaroid -->
+            <div id="diagram-p4-agent" class="hidden p-6 w-full text-center">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage/15 text-sage text-[11px] font-mono font-semibold mb-4">
+                <span>Research Workflow</span>
+                <span>→</span>
+                <span>AI Agent</span>
+                <span>→</span>
+                <span>Faster Discovery</span>
+              </div>
+              <div class="grid grid-cols-3 gap-3 items-center max-w-xs mx-auto">
+                <div class="bg-white p-3 rounded-lg border border-sage/20 shadow-sm">
+                  <i data-lucide="microscope" class="w-5 h-5 mx-auto text-sage mb-1"></i>
+                  <span class="block text-[11px] font-bold text-espresso">Research Loop</span>
+                </div>
+                <div class="bg-sage text-white p-3 rounded-lg shadow">
+                  <i data-lucide="bot" class="w-5 h-5 mx-auto text-white mb-1"></i>
+                  <span class="block text-[11px] font-bold">Research Agent</span>
+                </div>
+                <div class="bg-white p-3 rounded-lg border border-sage/20 shadow-sm">
+                  <i data-lucide="database" class="w-5 h-5 mx-auto text-sienna mb-1"></i>
+                  <span class="block text-[11px] font-bold text-espresso">Useful Evidence</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 px-1 flex flex-col items-start gap-3">
+            <div>
+              <h3 class="font-hand text-3xl font-bold text-espresso leading-tight">Autonomous Agents for Research</h3>
+              <p class="text-xs text-espresso/70 mt-0.5">Using agentic systems to accelerate research workflows and data collection.</p>
+            </div>
+            <a href="https://openreview.net/forum?id=Qx2jHkK95V&referrer=%5Bthe%20profile%20of%20Tae%20Wook%20Kim%5D%28%2Fprofile%3Fid%3D~Tae_Wook_Kim3%29" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-paper text-sienna text-xs font-semibold hover:bg-sienna hover:text-white transition">
+              <span>Read Workshop Paper</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Video Lightbox Modal for NBC10 Boston -->
+  <div id="video-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 no-print" onclick="closeVideoModal()">
+    <div class="bg-espresso rounded-xl max-w-3xl w-full overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between px-4 py-3 text-paper border-b border-white/10">
+        <span class="text-xs font-semibold">NBC10 Boston · Coffee Science at MIT</span>
+        <button onclick="closeVideoModal()" class="text-paper/70 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      <div class="aspect-video w-full bg-black">
+        <iframe id="yt-iframe" class="w-full h-full" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instagram Embed Script -->
+  <script async src="https://www.instagram.com/embed.js"></script>
+
+  <script>
+    lucide.createIcons();
+
+    // 1. Instagram Reel vs. Photo Fallback Toggle
+    let useReelFallback = false;
+    function toggleReelFallback(forceState = null) {
+      useReelFallback = forceState !== null ? forceState : !useReelFallback;
+      document.getElementById('ig-live-wrapper').classList.toggle('hidden', useReelFallback);
+      document.getElementById('ig-photo-fallback').classList.toggle('hidden', !useReelFallback);
+    }
+
+    // Auto-fallback if Instagram cannot render its iframe.
+    window.addEventListener('load', () => {
+      if (window.instgrm?.Embeds?.process) {
+        window.instgrm.Embeds.process();
+      }
+      setTimeout(() => {
+        const wrapper = document.getElementById('ig-live-wrapper');
+        if (wrapper && !wrapper.querySelector('iframe')) {
+          toggleReelFallback(true);
+        }
+      }, 4500);
+    });
+
+    // 2. Section 3: Cycling "New [Blank]" Word
+    const blankWords = ['Runner', 'Diver', 'Sailor', 'Pirate', 'Pilot', 'Teacher', 'Archer', 'Fencer'];
+    let wordIndex = 0;
+    let blankTimer = null;
+    function setBlankWord(word) {
+      const wordEl = document.getElementById('new-blank-word');
+      const shell = wordEl?.closest('.word-flip');
+      if (!wordEl || wordEl.textContent === word) return;
+      shell?.classList.remove('is-flipping');
+      void shell?.offsetWidth;
+      wordEl.textContent = word;
+      shell?.classList.add('is-flipping');
+      wordIndex = blankWords.indexOf(word) >= 0 ? blankWords.indexOf(word) : wordIndex;
+    }
+    function cycleBlankWord() {
+      wordIndex = (wordIndex + 1) % blankWords.length;
+      setBlankWord(blankWords[wordIndex]);
+    }
+    function startBlankCycle() {
+      if (blankTimer) clearInterval(blankTimer);
+      blankTimer = setInterval(cycleBlankWord, 3200);
+    }
+    function pauseBlankCycle() {
+      if (blankTimer) clearInterval(blankTimer);
+      blankTimer = null;
+    }
+    startBlankCycle();
+    document.querySelectorAll('.hobby-card[data-new-word]').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        pauseBlankCycle();
+        setBlankWord(card.dataset.newWord);
+      });
+      card.addEventListener('mouseleave', startBlankCycle);
+      card.addEventListener('focusin', () => {
+        pauseBlankCycle();
+        setBlankWord(card.dataset.newWord);
+      });
+      card.addEventListener('focusout', startBlankCycle);
+    });
+
+    // 3. NBC10 Video Lightbox
+    function openVideoModal() {
+      document.getElementById('yt-iframe').src = 'https://www.youtube.com/embed/kO4-jYONaVU?autoplay=1';
+      document.getElementById('video-modal').classList.remove('hidden');
+    }
+    function closeVideoModal() {
+      document.getElementById('yt-iframe').src = '';
+      document.getElementById('video-modal').classList.add('hidden');
+    }
+
+  </script>
+</body>
+</html>
