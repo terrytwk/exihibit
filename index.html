@@ -79,6 +79,10 @@
       font-size: 1rem;
     }
 
+    .print-only {
+      display: none;
+    }
+
     /* Polaroid Frame & Smooth Hover Lift (No Dragging) */
     .polaroid {
       background: #FFFFFF;
@@ -240,16 +244,82 @@
       }
     }
 
-    /* Print stylesheet */
+    /* Designed print/export stylesheet */
     @media print {
       @page {
-        margin: 10mm;
+        margin: 8mm;
+      }
+      *,
+      *::before,
+      *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      html {
+        background: #F6F2EA !important;
       }
       body {
-        background: #FFFFFF !important;
+        background-color: #F6F2EA !important;
+        background-image:
+          radial-gradient(rgba(35, 25, 21, 0.045) 1px, transparent 0),
+          radial-gradient(rgba(184, 93, 59, 0.03) 1px, transparent 0) !important;
+        background-size: 28px 28px !important;
+        background-position: 0 0, 14px 14px !important;
       }
       .no-print {
         display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      .print-access-page {
+        min-height: 9.6in;
+        page-break-after: always;
+        break-after: page;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+      }
+      .print-access-card {
+        width: min(6.8in, 100%);
+        background: #FFFFFF !important;
+        border: 1px solid rgba(35, 25, 21, 0.10);
+        border-radius: 8px;
+        box-shadow: 0 18px 44px -18px rgba(35, 25, 21, 0.26) !important;
+        padding: 0.55in;
+        text-align: left;
+      }
+      .print-access-card .eyebrow {
+        color: #B85D3B !important;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .print-access-card h2 {
+        color: #231915 !important;
+        font-family: Fraunces, Georgia, serif;
+        font-size: 2.3rem;
+        font-weight: 600;
+        line-height: 1.05;
+        margin-top: 0.16in;
+      }
+      .print-access-card p {
+        color: rgba(35, 25, 21, 0.78) !important;
+        font-size: 1rem;
+        line-height: 1.45;
+        margin-top: 0.18in;
+      }
+      .print-access-card a {
+        color: #8F432A !important;
+        display: block;
+        font-size: 1.08rem;
+        font-weight: 700;
+        line-height: 1.35;
+        margin-top: 0.18in;
+        overflow-wrap: anywhere;
+        text-decoration: underline;
       }
       #ig-live-wrapper {
         display: none !important;
@@ -258,15 +328,23 @@
         display: block !important;
       }
       .polaroid {
-        transform: none !important;
-        box-shadow: none !important;
-        border: 1px solid #D5CEC2 !important;
+        background: #FFFFFF !important;
+        box-shadow: 0 10px 25px -4px rgba(35, 25, 21, 0.12), 0 4px 10px -2px rgba(35, 25, 21, 0.06) !important;
+        border: 1px solid rgba(35, 25, 21, 0.07) !important;
         break-inside: avoid !important;
         page-break-inside: avoid !important;
       }
+      .tape,
+      .tape-sage {
+        display: block !important;
+      }
       section {
-        break-inside: avoid-page;
-        margin-bottom: 28px !important;
+        break-inside: auto;
+        margin-bottom: 44px !important;
+      }
+      main {
+        padding-top: 24px !important;
+        padding-bottom: 24px !important;
       }
     }
   </style>
@@ -286,6 +364,20 @@
   </header>
 
   <main class="max-w-6xl mx-auto px-4 sm:px-8 pt-10 pb-24 space-y-24">
+
+    <section class="print-only print-access-page">
+      <div class="print-access-card">
+        <p class="eyebrow">Interactive version</p>
+        <h2>View the exhibit online</h2>
+        <p>
+          This PDF preserves the exhibit design. The interactive version includes live links and embedded media.
+        </p>
+        <a href="https://terrytwk.github.io/exihibit/">https://terrytwk.github.io/exihibit/</a>
+        <p>
+          If the link is unavailable, a static image snapshot of the exhibit is included at the end of this PDF.
+        </p>
+      </div>
+    </section>
 
     <!-- Minimalist Title Header -->
     <div class="text-center max-w-xl mx-auto pt-2">
@@ -407,12 +499,12 @@
           <div class="editable-photo aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-paperDark relative" data-img-key="p1-pkg">
             <img id="img-p1-pkg" src="assets/barista-to-researcher/pkg-fellowship.jpg" alt="PKG Fellowship for coffee science research" class="w-full h-full object-cover" />
             <span class="absolute bottom-2.5 left-2.5 bg-espresso/85 text-white text-[10px] font-bold px-2.5 py-1 rounded-full pointer-events-none">
-              MIT PKG Fellow
+              Coffee Science · Public Service
             </span>
           </div>
           <div class="pt-3.5 px-1">
             <h3 class="font-hand text-2xl font-bold text-espresso leading-tight">PKG Fellowship</h3>
-            <p class="text-xs text-espresso/70 mt-0.5">A fellowship that helped turn coffee science into public-facing research.</p>
+            <p class="text-xs text-espresso/70 mt-0.5">Coffee science research with a public service lens.</p>
             <div class="mt-2.5">
               <a href="https://www.instagram.com/p/C9iOcrLy1Xn/?utm_source=ig_web_copy_link&cplk=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-paper text-[11px] font-semibold text-sienna hover:bg-sienna hover:text-white transition">
                 <span>View PKG Highlight</span>
@@ -428,12 +520,12 @@
           <div class="editable-photo aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-paperDark relative" data-img-key="p1-eloranta">
             <img id="img-p1-eloranta" src="assets/barista-to-researcher/Eloranta.png" alt="Eloranta Fellowship for coffee science research" class="w-full h-full object-contain bg-white" />
             <span class="absolute bottom-2.5 left-2.5 bg-sage/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-full pointer-events-none">
-              Coffee Science Research
+              Coffee Science · Independent Research
             </span>
           </div>
           <div class="pt-3.5 px-1">
             <h3 class="font-hand text-2xl font-bold text-espresso leading-tight">Eloranta Fellowship</h3>
-            <p class="text-xs text-espresso/70 mt-0.5">A fellowship supporting the next stage of coffee science research.</p>
+            <p class="text-xs text-espresso/70 mt-0.5">Independent support for the next stage of coffee science.</p>
             <div class="mt-2.5">
               <a href="https://www.instagram.com/reel/DQwZH-miapk/?utm_source=ig_web_copy_link&amp;vrfl=MzRlODBiNWFlZA==&amp;srtk=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-paper text-[11px] font-semibold text-sienna hover:bg-sienna hover:text-white transition">
                 <span>View Eloranta Highlight</span>
